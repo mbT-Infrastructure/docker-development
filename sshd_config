@@ -1,0 +1,14 @@
+# Authentication
+AllowUsers user
+ChallengeResponseAuthentication no
+PermitRootLogin no
+PasswordAuthentication no
+UsePAM no
+
+# Connection
+Subsystem sftp internal-sftp
+Port 22
+
+# User configuration
+Match User user
+    AuthorizedKeysFile /app/ssh/authorized_keys
