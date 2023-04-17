@@ -1,6 +1,6 @@
 FROM madebytimo/base
 
-RUN install-autonomous.sh install Basics htop Java npm Scripts && \
+RUN install-autonomous.sh install Ansible Basics Docker htop Java npm Scripts ScriptsDevelopment && \
     apt update -qq && apt install -y -qq ssh && \ 
     rm -rf /var/lib/apt/lists/*
 

@@ -9,4 +9,7 @@ echo "$PUBLIC_KEYS" > /app/ssh/authorized_keys
 
 chown --recursive user /media/user
 
+echo "start docker deamon"
+dockerd &> /var/log/dockerd &
+
 exec "$@"

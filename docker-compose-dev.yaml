@@ -5,6 +5,7 @@ services:
   development:
     container_name: development
     build: .
+    privileged: true
     environment:
       - PUBLIC_KEYS=
         
