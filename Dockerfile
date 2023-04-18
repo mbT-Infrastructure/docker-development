@@ -1,7 +1,6 @@
 FROM madebytimo/base
 
-RUN install-autonomous.sh install Ansible Basics Docker htop Java npm Scripts ScriptsDevelopment && \
-    apt update -qq && apt install -y -qq ssh && \ 
+RUN install-autonomous.sh install Ansible Basics Docker htop Java npm Scripts Subversion ScriptsDevelopment && \
     rm -rf /var/lib/apt/lists/*
 
 RUN adduser user --disabled-password --gecos "" --home /media/user
