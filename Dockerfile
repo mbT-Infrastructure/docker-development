@@ -10,6 +10,7 @@ RUN mkdir --parents /media/user
 RUN adduser user --disabled-password --gecos "" --home /media/user && \
     usermod --append --groups docker user
 
+ENV NESTED_DOCKER=""
 ENV PUBLIC_KEYS=""
 
 COPY entrypoint.sh /entrypoint.sh

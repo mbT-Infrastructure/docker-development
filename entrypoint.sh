@@ -9,7 +9,9 @@ echo "$PUBLIC_KEYS" > /app/ssh/authorized_keys
 
 chown --recursive user /media/user
 
-echo "start docker deamon"
-dockerd &> /var/log/dockerd &
-
+if [[ "$NESTED_DOCKER" == true ]]; then
+    rm -f -r /var/run/docker/
+    echo "start docker deamon"
+    dockerd &> /var/log/dockerd &
+fi
 exec "$@"
