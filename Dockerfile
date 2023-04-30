@@ -1,13 +1,14 @@
-FROM madebytimo/base
+FROM madebytimo/java-nodejs-python
 
-RUN install-autonomous.sh install Ansible Basics Docker htop Java npm Scripts Subversion ScriptsDevelopment && \
+RUN install-autonomous.sh install Ansible Basics Docker htop npm Scripts Subversion ScriptsDevelopment && \
     rm -rf /var/lib/apt/lists/*
 
-RUN adduser user --disabled-password --gecos "" --home /media/user
 RUN mkdir -p --mode 0755 /var/run/sshd
 COPY sshd_config /etc/ssh/
 
 RUN mkdir --parents /media/user
+RUN adduser user --disabled-password --gecos "" --home /media/user && \
+    usermod --append --groups docker user
 
 ENV PUBLIC_KEYS=""
 
