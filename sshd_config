@@ -6,6 +6,7 @@ PasswordAuthentication no
 UsePAM no
 
 # Connection
+HostKey /app/ssh/host_key
 Subsystem sftp internal-sftp
 Port 22
 

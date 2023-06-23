@@ -1,6 +1,7 @@
 FROM madebytimo/java-nodejs-python
 
-RUN install-autonomous.sh install Ansible Basics Docker FFmpeg Fileorganizer Htop MetadataEditors OCRTools Scripts ScriptsAdvanced ScriptsDesktop ScriptsDevelopment Subversion && \
+RUN install-autonomous.sh install Ansible Basics Docker FFmpeg Fileorganizer Htop MetadataEditors \
+    OCRTools Scripts ScriptsAdvanced ScriptsDesktop ScriptsDevelopment Subversion && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p --mode 0755 /var/run/sshd
