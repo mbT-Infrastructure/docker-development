@@ -11,8 +11,6 @@ It starts a ssh deamon for the user `user`.
     - Public keys with access to the ssh server. For example `ssh-rsa AAAAB3Nz... user@example.madebytimo.de`.
 - `HOST_KEY`
     - Host key to use for the ssh server.
-- `NESTED_DOCKER`
-    - Set to `true` to start a nested docker deamon at startup.
 
 
 ## Volumes

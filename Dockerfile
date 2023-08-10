@@ -1,7 +1,8 @@
 FROM madebytimo/java-nodejs-python
 
-RUN install-autonomous.sh install Ansible Basics Docker FFmpeg Fileorganizer Htop MetadataEditors \
-    OCRTools Screen Scripts ScriptsAdvanced ScriptsDesktop ScriptsDevelopment Subversion Sudo && \
+RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Htop MetadataEditors \
+    OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDesktop ScriptsDevelopment Subversion \
+    Sudo && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p --mode 0755 /var/run/sshd
@@ -9,10 +10,10 @@ COPY sshd_config /etc/ssh/
 
 RUN mkdir --parents /media/user
 RUN usermod --password '*' user && \
-    usermod --append --groups docker,sudo user
+    usermod --append --groups sudo user
 
-ENV NESTED_DOCKER="false"
-ENV PUBLIC_KEYS=""
+ENV AUTHORIZED_PUBLIC_KEYS=""
+ENV HOST_KEY=""
 
 COPY entrypoint.sh /entrypoint.sh
 

@@ -19,9 +19,4 @@ fi
 
 chown --recursive user /media/user
 
-if [[ "$NESTED_DOCKER" == true ]]; then
-    rm -f -r /var/run/docker/
-    echo "start docker deamon"
-    dockerd &> /var/log/dockerd &
-fi
 exec "$@"
