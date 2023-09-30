@@ -1,9 +1,8 @@
 FROM madebytimo/java-nodejs-python
 
 RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Htop MetadataEditors \
-    OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDesktop ScriptsDevelopment Subversion \
-    Sudo && \
-    rm -rf /var/lib/apt/lists/*
+    OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDevelopment Subversion Sudo \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p --mode 0755 /var/run/sshd
 COPY sshd_config /etc/ssh/
