@@ -1,6 +1,6 @@
 FROM madebytimo/java-nodejs-python
 
-RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Htop MetadataEditors \
+RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Golang Htop MetadataEditors \
     OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDevelopment Subversion Sudo \
     && rm -rf /var/lib/apt/lists/*
 
