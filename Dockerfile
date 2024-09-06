@@ -1,15 +1,15 @@
 FROM madebytimo/java-nodejs-python
 
-RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Golang Htop MetadataEditors \
+RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Go Htop MetadataEditors \
     OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDevelopment Subversion Sudo \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p --mode 0755 /var/run/sshd
 
-RUN mkdir -p --mode 0755 /var/run/sshd
 COPY sshd_config /etc/ssh/
 
-RUN mkdir --parents /media/user
-RUN usermod --password '*' user && \
-    usermod --append --groups sudo user
+RUN mkdir --parents /media/user \
+    && usermod --password '*' user \
+    && usermod --append --groups sudo user
 
 ENV AUTHORIZED_PUBLIC_KEYS=""
 ENV HOST_KEY=""
