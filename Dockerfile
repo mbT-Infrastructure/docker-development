@@ -2,6 +2,7 @@ FROM madebytimo/java-nodejs-python
 
 RUN install-autonomous.sh install Ansible Basics FFmpeg Fileorganizer Go Htop MetadataEditors \
     OCRTools Podman Screen Scripts ScriptsAdvanced ScriptsDevelopment Subversion Sudo \
+    && apt update -qq && apt install -y -qq openssh-server \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p --mode 0755 /var/run/sshd
 
@@ -14,7 +15,7 @@ RUN mkdir --parents /media/user \
 ENV AUTHORIZED_PUBLIC_KEYS=""
 ENV HOST_KEY=""
 
-COPY entrypoint.sh /entrypoint.sh
+COPY files/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/usr/sbin/sshd", "-D", "-e" ]
