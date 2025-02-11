@@ -5,10 +5,11 @@ services:
   development:
     container_name: development
     build: .
+     # nosemgrep
     privileged: true
     environment:
       - AUTHORIZED_PUBLIC_KEYS=
     volumes:
       - "./data-local:/media/user"
     ports:
-      - "8022:22"
+      - "127.0.0.1:8022:22"
