@@ -1,5 +1,6 @@
 # Authentication
 AllowUsers user
+AuthorizedKeysFile /app/ssh/authorized_keys
 ChallengeResponseAuthentication no
 PermitRootLogin no
 PasswordAuthentication no
@@ -9,7 +10,3 @@ UsePAM no
 HostKey /app/ssh/host_key
 Subsystem sftp internal-sftp
 Port 22
-
-# User configuration
-Match User user
-    AuthorizedKeysFile /app/ssh/authorized_keys

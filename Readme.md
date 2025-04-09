@@ -1,8 +1,8 @@
 # development image
 
-This image contains ...
+This Docker image contains tools for development.
 
-It does ...
+It starts a ssh deamon for the user `user`.
 
 ## Installation
 
@@ -10,23 +10,23 @@ It does ...
 
 ## Usage
 
-This Container image extends the [base image]. Make sure to also configure environment variables,
-ports and volumes from that image.
-
-### Command line flags
-
--   `--output PATH`
-    -   The output path.
+This Container image extends the [builder image].
 
 ### Environment variables
 
--   `VARIABLE`
-    -   Set to `true` to enable ..., default: ``.
+-   `AUTHORIZED_PUBLIC_KEYS`
+    -   Public keys with access to the ssh server. For example
+        `ssh-rsa AAAAB3Nz... user@example.madebytimo.de`.
+-   `HOST_KEY`
+    -   Host key to use for the ssh server.
+-   `USER_GROUPS`
+    -   Comma seperated list of groups the user will be member of. The user will be removed from
+        groups not listed. Defaults to `docker,sudo`.
 
 ### Volumes
 
--   `/media/volume`
-    -   The input and output directory of the files to ...
+-   `/media/user`
+    -   The home directory of the development user.
 
 ## Development
 
@@ -36,6 +36,6 @@ To run for development execute:
 docker compose --file docker-compose-dev.yaml up --build
 ```
 
-[base image]: https://github.com/mbT-Infrastructure/docker-base
+[builder image]: https://github.com/mbT-Infrastructure/docker-builder
 [Docker Hub]: https://hub.docker.com/r/madebytimo/development
-[Releases]: https://github.com/madebytimo/docker-development/releases
+[Releases]: https://github.com/mbT-Infrastructure/docker-development/releases
