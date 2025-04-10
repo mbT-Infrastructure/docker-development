@@ -1,8 +1,7 @@
 FROM madebytimo/builder
 
-RUN install-autonomous.sh install Ansible Basics Docker FFmpeg Fileorganizer Go Htop Java \
-    MetadataEditors NetworkTools NodeJs OCRTools Python Screen Scripts ScriptsAdvanced \
-    ScriptsDevelopment SSHServer Subversion Sudo YtDlp \
+RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java \
+    MetadataEditors NetworkTools NodeJs OCRTools Screen SSHServer Subversion Sudo YtDlp \
     apt update -qq && apt install -qq -y uidmap \
     && rm -rf /var/lib/apt/lists/* \
     \
