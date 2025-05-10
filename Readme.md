@@ -14,6 +14,10 @@ This Container image extends the [builder image].
 
 ### Environment variables
 
+-   `AI_API_KEY`
+    -   Key to use for authorization to the AI API server used by codex.
+-   `AI_API_URL`
+    -   Url of the AI API server used by codex.
 -   `AUTHORIZED_PUBLIC_KEYS`
     -   Public keys with access to the ssh server. For example
         `ssh-rsa AAAAB3Nz... user@example.madebytimo.de`.

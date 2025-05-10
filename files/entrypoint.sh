@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e -o pipefail
 
+if [[ -z "$AI_BASE_URL" ]]; then
+    export AI_BASE_URL="$AI_API_URL"
+fi
+
 chown --recursive user /media/user
 
 usermod --remove --groups "$USER_GROUPS" user
