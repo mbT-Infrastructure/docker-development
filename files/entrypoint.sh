@@ -4,6 +4,12 @@ set -e -o pipefail
 if [[ -z "$AI_BASE_URL" ]]; then
     export AI_BASE_URL="$AI_API_URL"
 fi
+if [[ -z "$OPENAI_BASE_URL" ]]; then
+    export OPENAI_BASE_URL="$AI_API_URL"
+fi
+if [[ -z "$OPENAI_API_KEY" ]]; then
+    export OPENAI_API_KEY="$AI_API_KEY"
+fi
 
 if [[ "$(id --user)" -eq 0 ]]; then
     chown --recursive user /media/user
