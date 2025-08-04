@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e -o pipefail
 
-if [[ -z "$AI_BASE_URL" ]]; then
-    export AI_BASE_URL="$AI_API_URL"
-fi
 if [[ -z "$OPENAI_BASE_URL" ]]; then
     export OPENAI_BASE_URL="$AI_API_URL"
 fi

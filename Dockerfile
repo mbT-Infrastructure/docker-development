@@ -8,9 +8,9 @@ RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java 
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g @openai/codex \
     && mkdir /media/user/.codex \
-    && download.sh --output /media/user/.codex/config.yaml \
+    && download.sh --output /media/user/.codex/config.toml \
         "https://github.com/mbT-Infrastructure/template-config-files/raw/refs/heads/main/debian/\
-codex/config.yaml"  \
+codex/config.toml"  \
     && chown -R user:user /media/user/.codex \
     \
     && mkdir --mode 0755 --parents /var/run/sshd \
