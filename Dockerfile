@@ -4,7 +4,7 @@ ENV USER_GROUPS="sudo"
 
 RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java \
     MetadataEditors NetworkTools NodeJs OCRTools Screen SSHServer Subversion Sudo YtDlp \
-    apt update -qq && apt install -qq -y uidmap \
+    && apt update -qq && apt install -qq -y uidmap \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g @openai/codex \
     && mkdir /media/user/.codex \
