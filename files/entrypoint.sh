@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -e -o pipefail
 
-if [[ -n "$AI_API_URL" ]]; then
-    replace-vars.sh /media/user/.codex/config-template.toml > /media/user/.codex/config.toml
-fi
+CODEX_CONFIG_FILE="/etc/codex/config.toml"
 
 if [[ "$(id --user)" -eq 0 ]]; then
     chown --recursive user /media/user
@@ -14,9 +12,15 @@ if [[ "$(id --user)" -eq 0 ]]; then
     su user --command "XDG_RUNTIME_DIR=/run/user/$(id -u user) dockerd-rootless.sh &> /dev/null" &
 else
     export "XDG_RUNTIME_DIR=/run/user/$(id -u)"
+    mkdir --parents "${HOME}/.codex"
+    CODEX_CONFIG_FILE="${HOME}/.codex/config.toml"
     dockerd-rootless.sh &> /dev/null &
 fi
 
 disown -h
+
+if [[ -n "$AI_API_URL" ]]; then
+    replace-vars.sh /etc/codex/config-template.toml > "$CODEX_CONFIG_FILE"
+fi
 
 exec "$@"

@@ -1,9 +1,8 @@
 services:
     development:
         container_name: development
-        build:
-            .
-            # nosemgrep
+        build: .
+        # nosemgrep
         privileged: true
         environment:
             - AI_API_URL=$AI_API_URL
