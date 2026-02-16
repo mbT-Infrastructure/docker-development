@@ -1,6 +1,6 @@
 FROM madebytimo/builder
 
-ENV USER_GROUPS="sudo"
+ENV USER_GROUPS="sudo,user"
 
 RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java \
     MetadataEditors NetworkTools NodeJs OCRTools Screen SSHServer Subversion Sudo YtDlp \
@@ -27,9 +27,9 @@ ENV AI_API_KEY=""
 ENV AUTHORIZED_PUBLIC_KEYS=""
 ENV HOST_KEY=""
 
-COPY files/entrypoint.sh files/healthcheck-sshd.sh files/run-sshd.sh /usr/local/bin/
+COPY files/entrypoint-development.sh files/healthcheck-sshd.sh files/run-sshd.sh /usr/local/bin/
 
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "entrypoint-development.sh" ]
 CMD [ "run-sshd.sh" ]
 
 HEALTHCHECK CMD [ "healthcheck-sshd.sh" ]

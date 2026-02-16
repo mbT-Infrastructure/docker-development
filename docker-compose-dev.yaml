@@ -8,6 +8,6 @@ services:
             - AI_API_URL=$AI_API_URL
             - AI_API_KEY=$AI_API_KEY
             - AUTHORIZED_PUBLIC_KEYS=
-            - USER_GROUPS=
+            - USER_GROUPS=user
         ports:
             - "127.0.0.1:8022:22"

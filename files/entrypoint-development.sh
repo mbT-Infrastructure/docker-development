@@ -5,8 +5,7 @@ CODEX_CONFIG_FILE="/etc/codex/config.toml"
 
 if [[ "$(id --user)" -eq 0 ]]; then
     chown --recursive user /media/user
-    usermod --remove --groups "$USER_GROUPS" user
-    usermod --append --groups "$USER_GROUPS" user
+    usermod --groups "$USER_GROUPS" user
 
     rm -f "/run/user/$(id -u user)/docker.pid"
     su user --command "XDG_RUNTIME_DIR=/run/user/$(id -u user) dockerd-rootless.sh &> /dev/null" &
