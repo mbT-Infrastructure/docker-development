@@ -76,6 +76,13 @@ jobs:
               with:
                   name: ${{ env.version }}
                   path: builds/*
+            - name: Prepare release files
+              if: ${{ github.ref == 'refs/heads/main' && env.latest_version != env.version }}
+              run: |
+                  docker run --pull missing --rm --volume "${PWD}/builds:/media/workdir" \
+                  madebytimo/scripts bash -c \
+                  "split-big-files.sh --size 2147483647 --replace --output /media/workdir \
+                  /media/workdir/*"
             - name: Release
               if: ${{ github.ref == 'refs/heads/main' && env.latest_version != env.version }}
               uses: softprops/action-gh-release@v2
@@ -84,7 +91,7 @@ jobs:
                   tag_name: ${{ env.version }}
             - name: Export cache
               run: |
-                  docker run --pull always --rm \
+                  docker run --pull missing --rm \
                       --volume "/media/saved-cache:/media/saved-cache" \
                       --volume \
                       "docker-development-build-cache:/media/build-cache" \
