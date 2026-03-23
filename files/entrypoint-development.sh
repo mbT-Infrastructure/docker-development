@@ -4,7 +4,6 @@ set -e -o pipefail
 CODEX_CONFIG_FILE="/etc/codex/config.toml"
 
 if [[ "$(id --user)" -eq 0 ]]; then
-    chown --recursive user /media/user
     usermod --groups "$USER_GROUPS" user
 
     rm -f "/run/user/$(id -u user)/docker.pid"
