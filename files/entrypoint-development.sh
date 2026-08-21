@@ -1,24 +1,18 @@
 #!/usr/bin/env bash
 set -e -o pipefail
 
-CODEX_CONFIG_FILE="/etc/codex/config.toml"
-
 if [[ "$(id --user)" -eq 0 ]]; then
     usermod --groups "$USER_GROUPS" user
-
-    rm -f "/run/user/$(id -u user)/docker.pid"
-    su user --command "XDG_RUNTIME_DIR=/run/user/$(id -u user) dockerd-rootless.sh &> /dev/null" &
-else
-    export "XDG_RUNTIME_DIR=/run/user/$(id -u)"
-    mkdir --parents "${HOME}/.codex"
-    CODEX_CONFIG_FILE="${HOME}/.codex/config.toml"
-    dockerd-rootless.sh &> /dev/null &
 fi
 
-disown -h
+cat <<EOF > /etc/profile.d/env-development.sh
+#!/usr/bin/env bash
 
-if [[ -n "$AI_API_URL" ]]; then
-    replace-vars.sh /etc/codex/config-template.toml > "$CODEX_CONFIG_FILE"
-fi
+LANG="$LANG"
+DOCKER_HOST="unix:///\${XDG_RUNTIME_DIR}/docker.sock"
+XDG_RUNTIME_DIR="/run/user/\$(id -u)"
+
+export DOCKER_HOST LANG XDG_RUNTIME_DIR
+EOF
 
 exec "$@"

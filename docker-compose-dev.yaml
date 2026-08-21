@@ -2,12 +2,13 @@ services:
     development:
         container_name: development
         build: .
+        mem_limit: 2G
         # nosemgrep
         privileged: true
         environment:
-            - AI_API_URL=$AI_API_URL
-            - AI_API_KEY=$AI_API_KEY
-            - AUTHORIZED_PUBLIC_KEYS=
+            - AUTHORIZED_PUBLIC_KEYS=${SSH_PUBLIC_KEY}
             - USER_GROUPS=user
+        tmpfs:
+            - /tmp:exec
         ports:
             - "127.0.0.1:8022:22"

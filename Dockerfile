@@ -6,11 +6,6 @@ RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java 
     MetadataEditors NetworkTools NodeJs OCRTools Screen SSHServer Subversion Sudo YtDlp \
     && apt update -qq && apt install -qq -y uidmap \
     && rm -rf /var/lib/apt/lists/* \
-    && npm install -g @openai/codex \
-    && mkdir /etc/codex \
-    && download.sh --output /etc/codex/config-template.toml \
-        "https://github.com/mbT-Infrastructure/template-config-files/raw/refs/heads/main/debian/\
-codex/config.toml"  \
     && mkdir --mode 0755 --parents /var/run/sshd \
     && rm ~/.gitconfig \
     && usermod --password '*' user \
@@ -19,17 +14,16 @@ codex/config.toml"  \
     && chmod 0700 "/run/user/$(id --user user)" \
     && usermod --append --groups "$USER_GROUPS" user
 
-COPY files/env.sh /etc/profile.d/
 COPY files/sshd_config /etc/ssh/
 
-ENV AI_API_URL=""
-ENV AI_API_KEY=""
 ENV AUTHORIZED_PUBLIC_KEYS=""
 ENV HOST_KEY=""
 
-COPY files/entrypoint-development.sh files/healthcheck-sshd.sh files/run-sshd.sh /usr/local/bin/
+COPY files/entrypoint-development.sh files/healthcheck-sshd.sh \
+    files/run-docker.sh files/run-sshd.sh /usr/local/bin/
 
+WORKDIR /media/user
 ENTRYPOINT [ "entrypoint-development.sh" ]
-CMD [ "run-sshd.sh" ]
+CMD [ "run-parallel.sh", "run-docker.sh", "run-sshd.sh" ]
 
 HEALTHCHECK CMD [ "healthcheck-sshd.sh" ]
