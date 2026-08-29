@@ -17,13 +17,14 @@ RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java 
 COPY files/sshd_config /etc/ssh/
 
 ENV AUTHORIZED_PUBLIC_KEYS=""
+ENV DOCKER_HOST=""
 ENV HOST_KEY=""
 
-COPY files/entrypoint-development.sh files/healthcheck-sshd.sh \
+COPY files/entrypoint-development.sh files/healthcheck-docker.sh files/healthcheck-sshd.sh \
     files/run-docker.sh files/run-sshd.sh /usr/local/bin/
 
 WORKDIR /media/user
 ENTRYPOINT [ "entrypoint-development.sh" ]
 CMD [ "run-parallel.sh", "run-docker.sh", "run-sshd.sh" ]
 
-HEALTHCHECK CMD [ "healthcheck-sshd.sh" ]
+HEALTHCHECK CMD [ "bash", "-c", "healthcheck-docker.sh && healthcheck-sshd.sh" ]

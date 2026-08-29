@@ -14,19 +14,21 @@ This Container image extends the [builder image].
 
 ### Environment variables
 
--   `AUTHORIZED_PUBLIC_KEYS`
-    -   Public keys with access to the ssh server. For example
-        `ssh-xxxx AAAABBBB... user@example.madebytimo.de`.
--   `HOST_KEY`
-    -   Host key to use for the ssh server.
--   `USER_GROUPS`
-    -   Comma seperated list of groups the user will be member of. The user will be removed from
-        groups not listed. Defaults to `docker,sudo`.
+- `AUTHORIZED_PUBLIC_KEYS`
+    - Public keys with access to the ssh server. For example
+      `ssh-xxxx AAAABBBB... user@example.madebytimo.de`.
+- `DOCKER_HOST`
+    - Set to use external Docker.
+- `HOST_KEY`
+    - Host key to use for the ssh server.
+- `USER_GROUPS`
+    - Comma seperated list of groups the user will be member of. The user will be removed from
+      groups not listed. Defaults to `docker,sudo`.
 
 ### Volumes
 
--   `/media/user`
-    -   The home directory of the development user.
+- `/media/user`
+    - The home directory of the development user.
 
 ## Development
 
