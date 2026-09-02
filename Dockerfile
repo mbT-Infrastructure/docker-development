@@ -2,7 +2,7 @@ FROM madebytimo/builder
 
 ENV USER_GROUPS="sudo,user"
 
-RUN install-autonomous.sh install Ansible Docker FFmpeg Fileorganizer Htop Java \
+RUN install-autonomous.sh install AndroidTools Ansible Docker FFmpeg Fileorganizer Htop Java \
     MetadataEditors NetworkTools NodeJs OCRTools Screen SSHServer Subversion Sudo YtDlp \
     && apt update -qq && apt install -qq -y uidmap \
     && rm -rf /var/lib/apt/lists/* \
